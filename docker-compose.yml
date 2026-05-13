@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: ./backend/DevExToolkit.Api
+      dockerfile: Dockerfile
+    ports:
+      - "5062:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Production
+      - ConnectionStrings__DefaultConnection=Data Source=/app/data/devex.db
+      - MongoDB__ConnectionString=mongodb://mongodb:27017
+      - MongoDB__DatabaseName=devex_toolkit
+      - GitHub__Token=${GITHUB_TOKEN:-}
+      - Slack__WebhookUrl=${SLACK_WEBHOOK_URL:-}
+      - Jira__BaseUrl=${JIRA_BASE_URL:-}
+      - Jira__ApiToken=${JIRA_API_TOKEN:-}
+    volumes:
+      - backend-data:/app/data
+    depends_on:
+      - mongodb
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "3000:80"
+    depends_on:
+      - backend
+
+  mongodb:
+    image: mongo:7
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db
+
+volumes:
+  backend-data:
+  mongo-data:
