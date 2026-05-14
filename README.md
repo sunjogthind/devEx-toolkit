@@ -86,11 +86,11 @@ devex-toolkit/
 
 ```
 ┌─────────────────────────────────────────────┐
-│              React Frontend (SPA)            │
-│  Dashboard │ Pipelines │ Integrations │ Logs │
+│              React Frontend (SPA)           │
+│  Dashboard │ Pipelines │ Integrations │ Logs│
 ├─────────────────────────────────────────────┤
 │         ASP.NET Core Web API (C#)           │
-│  REST Controllers │ Services │ Middleware    │
+│  REST Controllers │ Services │ Middleware   │
 ├──────────────┬──────────────────────────────┤
 │  SQL/SQLite  │  MongoDB (NoSQL)             │
 │  Projects,   │  Activity Logs,              │
